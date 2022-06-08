@@ -13,7 +13,7 @@
 This workshop will walk you through how to build a hangman game using python.
 It is a simple command-line game that allows the player to ender the input via command-line.
 
-### Get the files
+### Clone the repo
 
 ```
 git clone https://github.com/piggyvenus/women-initiative-workshop.git

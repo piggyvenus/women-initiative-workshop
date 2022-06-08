@@ -10,8 +10,8 @@
 
 
 ## Lab
-This workshop will walk through you how to build hangman game using python program.
-It is a simply command line game that allow player to ender the input via command-line.
+This workshop will walk you through how to build a hangman game using python.
+It is a simple command-line game that allows the player to ender the input via command-line.
 
 ### Get the files
 
@@ -20,7 +20,7 @@ git clone https://github.com/piggyvenus/women-initiative-workshop.git
 ```
 
 ### Library of words
-A list of words are created for this program to randomly select a word for guessing.
+A list of words is created for this program to select a word for guessing randomly.
 
 ### Let's start
 We will need a function get_word() to pick a word from the words.py
@@ -28,20 +28,20 @@ We will need a function get_word() to pick a word from the words.py
 ```
 def get_word():
 ```
-Then, need to import random Library
+Then, need to import random Library.
 
 ```
 import random
 from words import word_list
 ```
 
-Add code to pick a word and need to cast the word to upper case for simplify the comparison logic.
+Add code to pick a word and need to cast the word to upper case to simplify the comparison logic.
 ```
 word = random.choice(word_list)
 return word.upper()
 ```
 
-Next, we need a function to play the game and call it play. The random picked word is for player to guess, so the word is the input of the function.
+Next, we need a function to play the game and call it play(). The randomly picked word is for the player to guess, so the word is the function's input.
 ```
 def play(word):
 ```
@@ -52,7 +52,7 @@ We need a variable that can hold the guessed word for the game, and its length s
 word_completion = "_" * len(word)
 ```
 
-Next, we need a variable call guessed and initialized as false
+Next, we need a variable called guessed and initialized as false.
 ```
 guessed = False
 ```
@@ -66,7 +66,7 @@ guessed_letters = []
 guessed_words = []
 ```
 
-Last variable is a variable to keep track of the numbers of tries that the player tried, which should be the same as the number of body parts to be draw for the hangman.
+The last variable is to keep track of the number of tries that the player tried, which should be the same as the number of body parts to draw for the hangman.
 
 ```
 tries = 6
@@ -151,7 +151,7 @@ def display_hangman(tries):
     return stages[tries]
 ```
 
-Now, let's back to the play() function. Let's print some help for the player.
+Now, let's go back to the play() function and print some help for the player.
 
 ```
 tries = 6
@@ -171,7 +171,7 @@ Prompt player for input (word or letter) and store the guess in a variable. Plea
 ```
 guess = input("Please guess a letter or word: ").upper()
 ```
-Next step is to create a logic to process 3 possible inputs from the user (guessing a word, a letter, or anything else)
+The next step is to create a logic to process three possible inputs from the user (guessing a word, a letter, or anything else)
 Let's create an if-else block in the while loop.
 
 ```
@@ -183,10 +183,10 @@ else:
         print("Not a valid guess.")
 ```
 Let's think about the logic1 condition. When the guess input is a letter, it can be:
-1. if guessed letter is already guessed, print message.
-2. if guessed letter is not in the picked word, tries -1, add to the guessed letter to the list.
-3. if player guessed a correct letter, print "good job" message, tries -1, add guessed letter, update the correct guess in the word_list. Also need to compare the list to the word_list to the corresponding letter and update the guessed word and check the word is complete by check "_".
-Replace this following block into the #logic1
+1. if the guessed letter is already guessed, print the message.
+2. If the guessed letter is not in the picked word,  -1 tries, and add the guessed letter to the list.
+3. If the player guessed a correct letter, print the "good job" message, -1 tries, add guessed letter, and update the correct guess in the word_list. Also, you need to compare the list to the word_list to the corresponding letter, update the guessed word, and check the word is complete by checking "_."
+Replace this following block with the #logic1
 ```
   if guess in guessed_letters:
      print("You already guessed the letter", guess)
@@ -210,6 +210,7 @@ When the guess is a word, we check:
 1. If the guess in the guessed word list
 2. If the guess is not equal to the picked word, -1 tries
 3. The guess is correct
+Replace this following block with the #logic2
 
 ```
   if guess in guessed_words:
@@ -223,14 +224,14 @@ When the guess is a word, we check:
      word_completion = word
 ```
 
-For each try, you can print out the status for the hangman drawing and the guessed word.
+You can print out the status for the hangman drawing and the guessed word for each try.
 ```
 print(display_hangman(tries))
 print(word_completion)
 print("\n")
 ```
 
-When all tries are completed, print the games status.
+When all tries are completed, print the status of the game.
 ```
 if guessed:
    print("Congrats, you guessed the word! You win!")
@@ -238,7 +239,7 @@ else:
    print("Sorry, you ran out of tries. The word was " + word + ". Maybe next time!")
 ```
 
-Create a function to select a word, play the game. Also, allows player to play again without restart the program
+Create a function to select a word, and play the game. Also, it allows the player to play again without restarting the program.
 
 ```
 def main():
@@ -249,7 +250,7 @@ def main():
       play(word)
 ```
 
-Add the code to call main when executing the script from command-line
+Add the code to call main when executing the script from the command line.
 ```
 if __name__ == "__main__":
     main()

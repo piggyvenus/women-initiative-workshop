@@ -172,6 +172,7 @@ Prompt player for input (word or letter) and store the guess in a variable. Plea
 guess = input("Please guess a letter or word: ").upper()
 ```
 Next step is to create a logic to process 3 possible inputs from the user (guessing a word, a letter, or anything else)
+Let's create an if-else block in the while loop.
 
 ```
 if len(guess) == 1 and guess.isalpha():
@@ -180,4 +181,76 @@ elif len(guess) == len(word) and guess.isalpha():
 #logic2 for this condition
 else:
         print("Not a valid guess.")
+```
+Let's think about the logic1 condition. When the guess input is a letter, it can be:
+1. if guessed letter is already guessed, print message.
+2. if guessed letter is not in the picked word, tries -1, add to the guessed letter to the list.
+3. if player guessed a correct letter, print "good job" message, tries -1, add guessed letter, update the correct guess in the word_list. Also need to compare the list to the word_list to the corresponding letter and update the guessed word and check the word is complete by check "_".
+Replace this following block into the #logic1
+```
+  if guess in guessed_letters:
+     print("You already guessed the letter", guess)
+  elif guess not in word:
+     print(guess, "is not in the word.")
+     tries -= 1
+     guessed_letters.append(guess)
+  else:
+     print("Good job,", guess, "is in the word!")
+     guessed_letters.append(guess)
+     word_as_list = list(word_completion)
+     indices = [i for i, letter in enumerate(word) if letter == guess]
+     for index in indices:
+         word_as_list[index] = guess
+     word_completion = "".join(word_as_list)
+     if "_" not in word_completion:
+         guessed = True
+```
+
+When the guess is a word, we check:
+1. If the guess in the guessed word list
+2. If the guess is not equal to the picked word, -1 tries
+3. The guess is correct
+
+```
+  if guess in guessed_words:
+     print("You already guessed the word", guess)
+  elif guess != word:
+     print(guess, "is not the word.")
+     tries -= 1
+     guessed_words.append(guess)
+  else:
+     guessed = True
+     word_completion = word
+```
+
+For each try, you can print out the status for the hangman drawing and the guessed word.
+```
+print(display_hangman(tries))
+print(word_completion)
+print("\n")
+```
+
+When all tries are completed, print the games status.
+```
+if guessed:
+   print("Congrats, you guessed the word! You win!")
+else:
+   print("Sorry, you ran out of tries. The word was " + word + ". Maybe next time!")
+```
+
+Create a function to select a word, play the game. Also, allows player to play again without restart the program
+
+```
+def main():
+  word = get_word()
+  play(word)
+  while input("Play Again? (Y/N) ").upper() == "Y":
+      word = get_word()
+      play(word)
+```
+
+Add the code to call main when executing the script from command-line
+```
+if __name__ == "__main__":
+    main()
 ```

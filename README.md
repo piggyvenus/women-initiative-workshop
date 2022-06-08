@@ -13,7 +13,11 @@
 This workshop will walk through you how to build hangman game using python program.
 It is a simply command line game that allow player to ender the input via command-line.
 
-### 
+### Get the files
+
+```
+git clone 
+```
 
 ### Library of words
 A list of words are created for this program to randomly select a word for guessing.

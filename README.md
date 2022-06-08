@@ -16,7 +16,7 @@ It is a simply command line game that allow player to ender the input via comman
 ### Get the files
 
 ```
-git clone 
+git clone https://github.com/piggyvenus/women-initiative-workshop.git
 ```
 
 ### Library of words
